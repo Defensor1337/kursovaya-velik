@@ -1,0 +1,2234 @@
+/* CSS Reset */
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+    font-family: 'DomotikaProMedium';
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+input {
+    all: unset;
+    /* Сбрасывает все стили */
+    box-sizing: border-box;
+    /* Управляет отступами и размерами */
+    width: auto;
+    /* Настраиваемая ширина */
+    margin: 0;
+    /* Сбрасываем отступы */
+    padding: 0;
+    /* Сбрасываем внутренние отступы */
+    border: none;
+    /* Убираем рамки */
+    outline: none;
+    /* Убираем обводку */
+    background: none;
+    /* Убираем фон */
+    font-family: inherit;
+    /* Наследование шрифта от родителя */
+    font-size: inherit;
+    /* Наследование размера шрифта от родителя */
+    color: inherit;
+    /* Наследование цвета текста */
+}
+
+select {
+    all: unset;
+}
+
+a {
+    color: inherit; /* Убираем цвет ссылки, наследуем цвет от родителя */
+    text-decoration: none; /* Убираем подчеркивание */
+}
+
+a:hover {
+    text-decoration: none; /* Убираем подчеркивание при наведении */
+    color: inherit; /* Сохраняем цвет при наведении */
+}
+
+a:visited {
+    color: inherit; /* Убираем цвет для посещенных ссылок */
+}
+
+/* Main Styles */
+
+@font-face {
+    font-family: 'DomotikaPro';
+    src: url('/fonts/DomotikaPro-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DomotikaProMedium';
+    src: url('/fonts/DomotikaPro-Medium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DomotikaProBold';
+    src: url('/fonts/DomotikaPro-Bold.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*---------------------------------------------------------------------------------------------------*/
+
+.wrap {
+    max-width: 1280px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.carousel-block, header {
+    width: 100%;
+    background: linear-gradient(to right, #0A8AE6 50%, #fff 50%);
+}
+header .wrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.top-menu_ico {
+    display: flex;
+    align-self: start;
+    align-items: center;
+    color: #fff;
+}
+
+.top-menu_ico h1 {
+    font-family: 'DomotikaProBold';
+    font-size: 36px;
+    margin-bottom: 5px;
+}
+
+.top-menu_ico h2 {
+    font-family: 'DomotikaPro';
+    font-size: 10px;
+}
+
+.top-menu_ico img {
+    margin-right: 10px;
+}
+
+.top-menu_content {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+    font-family: 'DomotikaProMedium';
+    font-size: 15px;
+}
+.top-menu_contacts, .top-menu_contacts {
+    flex: 1;
+}
+
+.top-menu-btns {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.basket {
+    margin-right: 50px;
+}
+
+.basket, .account {
+    transition: filter 0.3s ease;
+}
+.icon-account {
+    display: flex;
+    align-items: center;
+}
+.icon-basket path {
+    transition: stroke 0.3s ease;
+}
+header .icon-basket:hover path{
+    stroke: #0A8AE6;
+}
+header .icon-account:hover {
+    path {fill: #0A8AE6;}
+    p {color: #0A8AE6;}
+}
+.icon-account path {
+    transition: fill 0.3s ease;
+}
+.icon-account p {
+    transition: color 0.3s ease;
+}
+
+
+.basket:hover, .account:hover {
+    filter: brightness(0) saturate(100%) invert(33%) sepia(100%) saturate(1000%) hue-rotate(200deg);
+    
+}
+
+.account {
+    display: flex;
+    align-items: center;
+}
+
+.makeacall {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.number {
+    font-size: 20px;
+}
+
+.number, .mail{
+    transition: color 0.3s ease;
+}
+header .number:hover, header .mail:hover {
+    color: #0A8AE6;
+}
+
+header nav ul {
+    display: flex;
+    gap: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid #D1D3D5;
+    border-bottom: 1px solid #D1D3D5;
+}
+
+header nav ul li {
+    font-family: 'DomotikaProMedium';
+    font-size: 15px;
+}
+
+.carousel-block .wrap {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0px;
+}
+
+
+.slider {
+    font-family: 'DomotikaProMedium';
+    font-size: 15px;
+    z-index: 999;
+    position: relative;
+}
+
+.slider h1 {
+    font-family: 'DomotikaProBold';
+    font-size: 36px;
+    margin-bottom: 50px;
+    color: #fff;
+}
+
+.main-btn {
+    font-family: 'DomotikaProMedium';
+    font-size: 20px;
+    text-transform: uppercase;
+    background-color: #F5FE96;
+    border: none;
+    color: #000;
+    padding: 15px 50px;
+    border-radius: 15px;
+    cursor: pointer;
+    z-index: 999;
+    position: relative;
+    transition: background-color 0.4s ease;
+}
+
+.main-btn:hover {
+    background-color: #fff;
+    
+}
+
+.carousel {
+    position: relative;
+    max-width: 800px;
+    max-height: 550px;
+    margin-top: 50px;
+    margin-left: -50%;
+    /* Делает карусель шире, чем родитель */
+    overflow: hidden;
+    /* Позволяет содержимому выходить за пределы родителя */
+    z-index: 1;
+
+}
+
+.carousel-images {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transition: transform 1.5s ease;
+    position: relative;
+}
+
+.carousel-item {
+    min-width: 100%;
+    height: auto;
+}
+
+.carousel-indicators {
+    z-index: 999;
+    position: relative;
+    margin-top: 100px;
+}
+
+.dot {
+    height: 4px;
+    width: 50px;
+    margin: 0 5px;
+    background-color: #A0C8E5;
+    border-radius: 15px;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dot.active {
+    background-color: #fff;
+}
+
+.dot:hover {
+    background-color: #F5FE96;
+}
+
+@media (max-width: 1060px) {
+
+    header .wrap{
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    header .top-menu_ico {
+        align-self:auto;
+    }
+    .icon-basket path {
+        stroke: #fff; /* Замените на нужный цвет для контура */
+    }
+    .icon-account path {
+        fill: #fff; /* Замените на нужный цвет для контура */
+    }
+    .number:hover, .mail:hover {
+        color: #F5FE96;
+    }
+    header nav ul li:hover {
+        color: #F5FE96;
+    }
+    .icon-account:hover {
+        path {fill: #F5FE96;}
+        p {color: #F5FE96;}
+    }
+    .icon-basket:hover path{
+        stroke: #F5FE96;
+    }
+
+    .header-menu {
+        color: #fff;
+    }
+    header { 
+        background: #0A8AE6;
+    }
+}/*#F5FE96*/
+@media (max-width: 550px) {
+    .top-menu_content {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    header nav  ul{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/*---------------------------------------------------------------------------------------*/
+
+.header {
+    background-color: #0A8AE6;
+}
+
+.header .header-menu,
+.header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header nav {
+    position: relative;
+    z-index: 1;
+}
+.header nav ul {
+    display: flex;
+    gap: 30px;
+}
+
+.header .top-menu_contacts, .header nav {
+    color: #fff;
+}
+.header .mail:hover, .header .number:hover, .header nav ul li:hover {
+    color: #F5FE96;
+}
+.header .icon-basket:hover path{
+    stroke: #F5FE96;
+}
+.header .icon-account:hover {
+    path {fill: #F5FE96;}
+    p {color: #F5FE96;}
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    
+    
+    /* Reduce the gap in the nav links */
+    .header nav ul {
+        gap: 20px;
+    }
+
+    /* Adjust font sizes */
+    .header .top-menu_ico h1 {
+        font-size: 28px;
+    }
+    
+    .header .top-menu_ico h2 {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Stack header menu elements vertically */
+    .header .header-menu {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Make nav links vertical */
+    .header nav ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    /* Center align top menu buttons */
+    .header .top-menu-btns {
+        justify-content: center;
+    }
+    /* Stack the top menu icon and content vertically */
+    .header .header-menu {
+        flex-direction: column;
+        align-items: center;
+        row-gap: 20px;
+    }
+    .header .header-menu .top-menu_ico {
+        align-self:auto;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Simplify font sizes for smaller screens */
+    .header .top-menu_ico h1 {
+        font-size: 24px;
+    }
+    
+    .header .top-menu_ico h2 {
+        font-size: 8px;
+    }
+
+    /* Stack everything in the header */
+    .header {
+        padding: 10px;
+    }
+
+    .header nav ul {
+        gap: 10px;
+    }
+    
+    /* Stack top menu contacts and buttons */
+    .header .top-menu_content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Reduce the gap for top-menu buttons */
+    .header .top-menu-btns {
+        gap: 20px;
+    }
+}
+/*---------------------------------------------------------------------------------------*/
+
+.navigation {
+    position: fixed; /* Фиксируем nav */
+    top: 0; /* Навигация всегда будет вверху экрана при прокрутке */
+    background-color: #fff; /* Фон навигации */
+    z-index: 1000; /* Высокий z-index, чтобы быть над другим контентом */
+    width: 100%; /* Занимаем всю ширину экрана */
+    left: 0; /* Привязываем к левому краю экрана */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Добавим легкую тень для выделения */
+    padding: 10px 10px; /* Дополнительный отступ для эстетики */
+    visibility: hidden;
+    display: flex;
+    justify-content: center; /* Центрирует внутренний контейнер */
+}
+
+.navigation .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1280px;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.navigation.sticky {
+    visibility: visible;
+}
+
+#nav-menu {
+    display: flex;
+    column-gap: 50px;
+    row-gap: 10px;
+}
+.header nav .burger-btn {
+    color: #fff;
+}
+.burger-btn {
+    display: none; /* скрываем бургер-кнопку на больших экранах */
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+@media (max-width: 768px) {
+    .burger-btn {
+        display: block;
+    }
+
+    #nav-menu {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        overflow: hidden;
+        max-height: 0; /* Меню скрыто по умолчанию */
+        transition: max-height 0.3s ease; /* Переход для плавного открытия */
+    }
+    .header nav ul li:hover {
+        color: #0A8AE6;
+    }
+
+    #nav-menu-second {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        color: #000;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        overflow: hidden;
+        max-height: 0; /* Меню скрыто по умолчанию */
+        transition: max-height 0.3s ease; /* Переход для плавного открытия */
+    }
+
+    #nav-menu.show, #nav-menu-second.show {
+        max-height: 300px;
+    }
+
+    /* Стилизация ссылок в бургер-меню */
+    #nav-menu a, #nav-menu-second a{
+        padding: 10px;
+        text-align: center;
+        width: 100%;
+    }
+}
+
+.bot-menu, .bot-menu-basket {
+    display: flex;
+    align-items: center;
+}
+
+.bot-menu-basket {
+    margin-left: auto;
+}
+
+header nav ul a:hover,
+.navigation ul a:hover {
+    color: #0A8AE6;
+}
+
+/*---------------------------------------------------------------------------------------*/
+
+.calc-block {
+    background-color: #EEEEEE;
+}
+
+.calc-block .wrap {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+}
+
+.calc-block .wrap h1 {
+    font-family: 'DomotikaProBold';
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.calc-params {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.calc-inp {
+    flex: 1 1 200px; /* Гибкость блока: минимум 200px ширины, но может увеличиваться */
+    max-width: 300px; /* Максимальная ширина для ограничения */
+    display: inline-flex;
+    align-items: center;
+    background-color: #fff;
+    color: #A0C8E5;
+    border: 1px solid #A0C8E5;
+    border-radius: 10px;
+    box-sizing: border-box;
+    height: 50px;
+    padding: 10px;
+    gap: 10px;
+    position: relative;
+
+}
+
+.custom-select {
+    width: 100%;
+    padding: 10px;
+    padding-right: 40px;
+    /* Отступ для стрелки */
+    font-size: 16px;
+    appearance: none;
+    /* Убираем стандартную стрелку */
+    border: none;
+    /* Убираем стандартную рамку */
+    background-color: transparent;
+    /* Прозрачный фон */
+}
+
+/* Кастомная стрелка */
+.custom-select-container::after {
+    content: "▼";
+    /* Стрелка */
+    font-size: 14px;
+    color: #A0C8E5;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    /* Расположение стрелки справа */
+    transform: translateY(-50%);
+    pointer-events: none;
+    /* Стрелка не взаимодействует с мышью */
+}
+
+.custom-select:focus {
+    outline: none;
+    /* Убираем обводку при фокусе */
+}
+
+.slider-button {
+    display: flex;
+    margin-top: 30px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.blue-btn {
+    font-family: 'DomotikaProMedium';
+    font-size: 20px;
+    text-transform: uppercase;
+    background-color: #0A8AE6;
+    border: none;
+    color: #fff;
+    padding: 15px 50px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color, color 0.4s ease;
+}
+
+.blue-btn:hover {
+    background-color: #F5FE96;
+    color: #000;
+    
+}
+
+.range-slider {
+    position: relative;
+    width: 50%; /* Ширина ползунка */
+    margin: 20px 0; /* Отступ сверху и снизу */
+}
+
+input[type="range"] {
+    -webkit-appearance: none; /* Убираем стандартный стиль */
+    width: 100%;
+    margin: 0;
+    position: absolute; /* Позиционирование ползунков */
+}
+
+.range-min {
+    z-index: 3; /* Поверх оси */
+}
+
+.range-max {
+    z-index: 3; /* Поверх оси */
+}
+
+/* Ось между ползунками */
+.slider-axis {
+    position: absolute;
+    top: 50%; /* Центрируем по вертикали */
+    left: 0;
+    right: 0; /* Растягиваем на всю ширину */
+    height: 4px; /* Высота оси */
+    background-color: #A0C8E5; /* Цвет оси */
+    z-index: 2; /* Под ползунками */
+}
+
+/* Стили для ползунков */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px; /* Ширина ползунка */
+    height: 15px; /* Высота ползунка */
+    background: #007BFF; /* Цвет ползунка */
+    cursor: pointer; /* Указатель курсора */
+    border-radius: 50%; /* Скруглённые углы */
+    position: relative; /* Чтобы ползунок был правильно позиционирован */
+    margin-top: -6px; /* Поднимаем ползунок над осью */
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 15px; /* Ширина ползунка */
+    height: 15px; /* Высота ползунка */
+    background: #007BFF; /* Цвет ползунка */
+    cursor: pointer; /* Указатель курсора */
+    border-radius: 50%; /* Скруглённые углы */
+    position: relative; /* Чтобы ползунок был правильно позиционирован */
+    margin-top: -6px; /* Поднимаем ползунок над осью */
+}
+
+
+/*--------------------------------------------------------------------------------------*/
+
+.catalog-block h1 {
+    font-family: 'DomotikaProBold';
+    font-size: 20px;
+}
+
+.catalog-block .wrap {
+    padding: 30px 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.catalog-block .wrap .blue-btn{
+    align-self: center;
+}
+
+.catalog-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0px;
+}
+
+.catalog-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid #0A8AE6;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25); /* Добавляем тень */
+    flex: 1 1 calc(25% - 40px); /* Устанавливаем базовую ширину для больших экранов */
+    max-width: calc(25% - 40px); /* Ограничиваем ширину, чтобы элементы оставались равномерными */
+    transition: transform 0.4s ease;
+}
+
+.catalog-item img {
+    max-width: 100%; /* Ограничиваем ширину изображения, чтобы не выходило за пределы */
+    height: auto; /* Сохраняем соотношение сторон изображения */
+    border-radius: 8px; /* Немного скруглим углы, чтобы совпадало с border-radius блока */
+    object-fit: cover; /* Обрезка изображения, чтобы оно точно вписывалось в заданную ширину */
+}
+
+.catalog-item p {
+    color: #0A8AE6;
+    margin: 10px 0px;
+}
+
+.catalog-item:hover {
+    transform: scale(0.95);
+}
+
+/*-----------------------------------------------------------------------------------*/
+
+.discount .wrap {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+
+.advert-carousel {
+    position: relative;
+    max-width: 1200px; /* Ширина слайдера */
+    margin: auto;
+    border-radius: 20px;
+    overflow: hidden; /* Скрыть переполнение */
+}
+
+.advert-carousel-images {
+    display: flex;
+    transition: transform 0.5s ease; /* Плавный переход */
+    position: relative; /* Для позиционирования индикаторов */
+}
+
+.advert-carousel-item {
+    min-width: 100%; /* Каждое изображение занимает 100% ширины */
+}
+
+.advert-carousel-indicators {
+    position: absolute; /* Позиционирование индикаторов */
+    bottom: 10px; /* Отступ от нижней части */
+    left: 50%; /* Центрирование */
+    transform: translateX(-50%); /* Центрирование */
+    display: flex; /* Горизонтальное расположение индикаторов */
+    gap: 10px; /* Промежуток между точками */
+}
+
+.advert-dot {
+    height: 8px;
+    width: 8px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.advert-dot.active {
+    background-color: #fff; /* Цвет активного индикатора */
+}
+
+/*-----------------------------------------------------------------------------------*/
+
+.news-block {
+    background-color: #EEEEEE;
+}
+
+.news-block .wrap{
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.news-container {
+    display: flex;
+    flex-wrap: wrap; /* Позволяет элементам переноситься на новую строку */
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.news-item {
+    flex: 1 1 calc(30% - 20px); /* Начальная ширина 30%, с учетом отступов */
+    display: flex;
+    flex-direction: column;
+    margin: 10px; /* Добавляем отступ между элементами */
+}
+
+.news-item img, .news-item p {
+    margin-bottom: 20px;
+}
+
+.news-item span {
+    height: 2px;
+    width: 100%;
+    background-color: #0A8AE6;
+    margin-bottom: 20px;
+}
+
+.news-item .text h1 {
+    font-family: 'DomotikaProBold';
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.news-item .text p {
+    font-family: 'DomotikaPro';
+    font-size: 15px;
+}
+
+/*-----------------------------------------------------------------------------------*/
+
+.main-footer {
+    font-family: 'DomotikaProMedium';
+    font-size: 15px;
+    background-color: #0A8AE6; /* Темный фон для футера */
+    color: #fff; /* Белый текст */
+    padding: 20px 0; /* Отступы сверху и снизу */
+}
+
+footer .wrap {
+    display: flex; /* Flexbox для расположения элементов в ряд */
+    
+}
+
+.main-menu-footer, .sub-menu-footer, .contacts-footer {
+    flex: 1; /* Каждый блок занимает равное пространство */
+    margin: 0 10px; /* Отступы между блоками */
+}
+
+.main-menu-footer ul, .sub-menu-footer ul, .contacts-footer ul {
+    list-style: none; /* Убираем маркеры у списков */
+    padding: 0; /* Убираем внутренние отступы */
+}
+
+.main-menu-footer li, .sub-menu-footer li, .contacts-footer li {
+    margin: 5px 0; /* Отступы между пунктами списка */
+    cursor: pointer; /* Курсор при наведении */
+    transition: color 0.3s; /* Плавный переход цвета */
+}
+
+.main-menu-footer li:hover, .sub-menu-footer li:hover {
+    color: #ffcc00; /* Цвет при наведении */
+}
+
+.contacts-footer h1 {
+    margin-top: 5px;
+    font-family: 'DomotikaProBold';
+    margin-bottom: 20px; /* Отступ снизу */
+}
+
+.contacts-footer ul li:hover {
+    color: #ffcc00;
+}
+
+.icons-footer {
+    display: flex; /* Flexbox для расположения иконок в ряд */
+    margin-top: 10px; /* Отступ сверху */
+}
+
+.icons-footer svg {
+    width: 30px; /* Ширина иконок */
+    height: 30px; /* Высота иконок */
+    margin-right: 10px; /* Отступ между иконками */
+    fill: #fff;
+    transition: fill 0.3s ease;
+}
+.icons-footer svg:hover {
+    fill: #ffcc00;
+}
+
+.copyright .wrap {
+    justify-content: center;
+}
+.copyright p {
+    color: #0A8AE6;
+    font-family: 'DomotikaProBold';
+    font-size: 15px;
+    padding: 10px;
+}
+/*----------------------------------------------------------------------------------------------------------------*/
+
+.catalog .wrap {
+    display: flex;
+    gap: 20px;
+}
+
+.catalog-params {
+    max-width: 350px;
+    box-sizing: border-box;
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.25), -1px -1px 4px rgba(0,0,0,0.25);
+    border-radius: 15px;
+    height: auto;
+    align-self: flex-start;
+}
+
+.catalog-params h1 {
+    font-family: 'DomotikaProBold';
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+.catalog-params .divider {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(168, 174, 192, 0.5)
+}
+
+.catal-param {
+    padding: 20px;
+}
+
+.catalog-param-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.catalog-singleinput {
+    flex: 1 1 150px; /* Гибкость блока: минимум 200px ширины, но может увеличиваться */
+    max-width: 250px; /* Максимальная ширина для ограничения */
+    display: inline-flex;
+    align-items: center;
+    background-color: #fff;
+    color: #A0C8E5;
+    border: 1px solid #A0C8E5;
+    border-radius: 15px;
+    box-sizing: border-box;
+    max-height: 40px;
+    padding: 10px;
+    gap: 10px;
+    position: relative;
+}
+
+/* Общие стили для радиокнопок */
+.catalog-radio-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.catalog-radio-container input {
+    display: none; /* Скрываем стандартный радиокнопку */
+}
+
+.catalog-radio-container .checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #A0C8E5;
+    border-radius: 50%; /* Круглая форма */
+    position: relative;
+    margin-right: 10px;
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Стилизация активной радиокнопки */
+.catalog-radio-container input:checked + .checkmark {
+    background-color: #f0f8ff; /* Цвет фона при выборе */
+    border-color: #0056b3;
+}
+
+.catalog-radio-container .checkmark::after {
+    content: "";
+    display: none; /* Скрываем по умолчанию */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%; /* Внутренний маркер для радиокнопок */
+    background-color: #0056b3;
+    transition: transform 0.3s ease-in-out;
+}
+
+.catalog-radio-container input:checked + .checkmark::after {
+    display: block;
+    transform: translate(-50%, -50%) scale(1); /* Эффект масштабирования для внутреннего маркера */
+}
+
+/* Общие стили для чекбоксов */
+.catalog-checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.catalog-checkbox-container input {
+    display: none; /* Скрываем стандартный чекбокс */
+}
+
+.catalog-checkbox-container .checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #A0C8E5;
+    border-radius: 4px; /* Квадратная форма */
+    position: relative;
+    margin-right: 10px;
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Стилизация активного чекбокса */
+.catalog-checkbox-container input:checked + .checkmark {
+    background-color: #f0f8ff; /* Цвет фона при выборе */
+    border-color: #0056b3;
+    box-shadow: 0 0 5px rgba(0, 86, 179, 0.5); /* Тень при выборе */
+}
+
+.catalog-checkbox-container .checkmark::after {
+    content: "";
+    display: none; /* Скрываем по умолчанию */
+    position: absolute;
+    top: 3px;
+    left: 6px;
+    width: 6px;
+    height: 12px;
+    border: solid #0056b3; /* Цвет галочки */
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease-in-out;
+}
+
+.catalog-checkbox-container input:checked + .checkmark::after {
+    display: block; /* Показываем галочку при выборе */
+}
+
+.catalog-param-speed .catalog-param-inputs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; /* Позволяем элементам переноситься на новую строку */
+    gap: 20px; /* Отступы между элементами */
+}
+
+.catalog-checkbox-container {
+    width: 45%; /* Каждому элементу задаем ширину 50% для двух колонок */
+    display: flex;
+    align-items: center;
+}
+
+.catalog-params-btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.catalog-submit-btn {
+    padding: 10px 50px;
+    color: #ffffff;
+    background-color: #0A8AE6;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 4px 8px rgba(10, 138, 230, 0.2);
+}
+
+.catalog-submit-btn:hover {
+    background-color: #0056b3; /* Цвет при наведении */
+    box-shadow: 0px 6px 12px rgba(0, 86, 179, 0.4); /* Увеличенная тень */
+    transform: translateY(-1px); /* Поднимает кнопку при наведении */
+}
+
+.catalog-submit-btn:active {
+    background-color: #003d80; /* Цвет при нажатии */
+    transform: translateY(0); /* Возвращает кнопку в исходное положение */
+    box-shadow: 0px 3px 6px rgba(0, 86, 179, 0.3); /* Меньшая тень при нажатии */
+}
+
+.catalog-reset-btn {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    color: #0A8AE6;
+    background-color: #ffffff;
+    border: 2px solid #0A8AE6;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    gap: 10px;
+    position: relative;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.catalog-reset-btn:hover {
+    background-color: #0A8AE6;
+    color: #ffffff;
+}
+
+/* Добавление крестика перед текстом */
+.catalog-reset-btn::before {
+    content: '✖'; /* Символ крестика */
+    font-size: 18px;
+    color: #0A8AE6;
+    transition: color 0.3s;
+}
+
+.catalog-reset-btn:hover::before {
+    color: #ffffff;
+}
+
+.catalog-main{
+    width: 100%;
+}
+.catalog-main, .catalog-search {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.catalog-main h1 {
+    font-size: 24px;
+    font-family: 'DomotikaProBold';
+}
+
+.catalog-search-inp {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    border: 1px solid #0A8AE6;
+    border-radius: 5px;
+}
+
+.catalog-search-inp-btn {
+    cursor: pointer;
+}
+
+.catalog-search-filters select {
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+    color: #0A8AE6;
+    border: 1px solid #0A8AE6;
+    border-radius: 10px;
+    background-color: #fff;
+    outline: none;
+}
+
+.catalog-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px; /* Отступы между карточками товаров */
+}
+
+.catalog-cell {
+    flex: 1 1 22%;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s;
+    padding: 5px 5px 10px 5px;
+}
+
+.catalog-cell:hover {
+    transform: translateY(-5px); /* Легкое поднятие карточки при наведении */
+}
+
+.catalog-cell img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.catalog-cell h1 {
+    font-family: 'DomotikaProMedium';
+    font-size: 16px;
+}
+
+.catalog-cell-basket {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.catalog-cell-basket p {
+    font-size: 24px;
+    color: #0A8AE6;
+}
+
+.catalog-cell-basket-btn {
+    padding: 8px;
+    background-color: #fff;
+    border: 1px solid #0A8AE6;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.catalog-cell-basket-btn:hover {
+    background-color: #0A8AE6;
+    transform: scale(1.1);
+}
+
+.catalog-cell-basket-btn svg {
+    width: 20px;
+    height: 20px;
+    transition: fill 0.3s;
+}
+
+.catalog-cell-basket-btn path {
+    fill: #0A8AE6;
+    transition: fill 0.3s;
+}
+
+.catalog-cell-basket-btn:hover path {
+    fill: #fff; /* Меняем цвет иконки при наведении */
+}
+
+
+.catalog-cell-basket-btn:hover {
+    background-color: #0073b1;
+}
+
+/* Медиа-запросы для адаптации под разные экраны */
+@media (max-width: 1024px) {
+    .catalog-cell {
+        flex: 1 1 30%; /* Три колонки на планшетах */
+    }
+}
+
+@media (max-width: 768px) {
+    .catalog-cell {
+        flex: 1 1 45%; /* Две колонки на мобильных */
+    }
+}
+
+@media (max-width: 480px) {
+    .catalog-cell {
+        flex: 1 1 100%; /* Одна колонка на узких экранах */
+    }
+}
+/*----------------------------------------------------------Item-Page-----------------------------------------------*/
+
+.item-block .wrap, .item-buy-section, .item-descr-section, .item-review-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.item-descr-section {
+    margin-bottom: 20px;
+}
+
+.item-block h1 {
+    font-family: 'DomotikaProBold';
+    font-size: 40px;
+}
+
+.item-block h2 {
+    font-family: 'DomotikaProMedium';
+    font-size: 20px;
+}
+
+.item-block h3 {
+    font-family: 'DomotikaProBold';
+    font-size: 20px;
+}
+
+.item-block p {
+    font-family: 'DomotikaPro';
+    font-size: 18px;
+}
+
+.item-main-section {
+    display: flex;
+    gap: 20px;
+}
+
+.item-gallery {
+    display: flex;
+    gap: 20px;
+    width: 75%;
+}
+
+.item-gallery-secondary-img {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 20%; /* Secondary images occupy 20% of the container width */
+}
+
+.item-gallery-secondary-img img {
+    width: 100%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s;
+}
+
+.item-gallery-secondary-img img:hover {
+    border-color: #0A8AE6; /* Highlight effect on hover */
+}
+
+.item-gallery-primary-img {
+    width: 75%; /* Primary image occupies 75% of the container width */
+}
+
+.item-gallery-primary-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+
+.item-buy-btn {
+    padding: 15px 50px;
+    color: #ffffff;
+    background-color: #0A8AE6;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 4px 8px rgba(10, 138, 230, 0.2);
+}
+
+.item-buy-btn:hover {
+    background-color: #0056b3; /* Цвет при наведении */
+    box-shadow: 0px 6px 12px rgba(0, 86, 179, 0.4); /* Увеличенная тень */
+    transform: translateY(-1px); /* Поднимает кнопку при наведении */
+}
+
+.item-buy-btn:active {
+    background-color: #003d80; /* Цвет при нажатии */
+    transform: translateY(0); /* Возвращает кнопку в исходное положение */
+    box-shadow: 0px 3px 6px rgba(0, 86, 179, 0.3); /* Меньшая тень при нажатии */
+}
+/*-----------------------------------------------------------Cart-Page--------------------------------------------------*/
+
+.cart .wrap h2 {
+    font-weight: bold;
+    font-size: 24px;
+    color: #0A8AE6;
+    margin-bottom: 20px;
+}
+
+.cart-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.cart-header, .cart-item-row {
+    display: flex;
+    padding: 10px 0;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-header > div, .cart-item-row > div {
+    text-align: center;
+    overflow: hidden;
+}
+
+.cart-header div:nth-child(1), .cart-item-row div:nth-child(1) {
+    flex-basis: 30px;
+}
+
+.cart-header .item-name, .cart-item-row .item-name {
+    flex-basis: 200px;
+    text-align: left;
+}
+
+.cart-header div:nth-child(3), .cart-item-row div:nth-child(3) {
+    flex-basis: 100px;
+}
+
+.cart-header div:nth-child(4), .cart-item-row div:nth-child(4) {
+    flex-basis: 80px;
+}
+
+.cart-header div:nth-child(5), .cart-item-row div:nth-child(5) {
+    flex-basis: 80px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+}
+
+.quantity-controls button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #eee;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.remove-item {
+    cursor: pointer;
+    color: #d9534f;
+    font-weight: bold;
+}
+
+.cart-discount {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.cart-discount input {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.cart-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 15px;
+    font-weight: bold;
+    border-top: 2px solid #ddd;
+    margin-top: 10px;
+    gap: 5px;
+}
+
+.cart-submit-btn {
+    align-self: flex-start;
+    margin-top: 20px;
+    padding: 15px 50px;
+    color: #ffffff;
+    background-color: #0A8AE6;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 4px 8px rgba(10, 138, 230, 0.2);
+}
+
+.cart-submit-btn:hover {
+    background-color: #0056b3; /* Цвет при наведении */
+    box-shadow: 0px 6px 12px rgba(0, 86, 179, 0.4); /* Увеличенная тень */
+    transform: translateY(-1px); /* Поднимает кнопку при наведении */
+}
+
+.cart-submit-btn:active {
+    background-color: #003d80; /* Цвет при нажатии */
+    transform: translateY(0); /* Возвращает кнопку в исходное положение */
+    box-shadow: 0px 3px 6px rgba(0, 86, 179, 0.3); /* Меньшая тень при нажатии */
+}
+
+
+/*-------------------------------------------------Login-Page---------------------------------------------------------*/
+
+.user-form {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.user-form.active-form {
+    display: flex;
+}
+
+/* Стили контейнера и формы */
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Остальные стили для формы */
+.user-form h2 {
+    text-align: center;
+    color: #0A8AE6;
+}
+.user-form label { font-weight: bold; color: #333; }
+.user-form input { padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; }
+.user-form p { text-align: center; font-size: 14px; }
+.user-form a { color: #0A8AE6; text-decoration: none; }
+.user-form a:hover { text-decoration: underline; }
+.form-submit-btn { padding: 15px; background-color: #0A8AE6; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; font-weight: bold; transition: background-color 0.3s ease, transform 0.2s ease; }
+.form-submit-btn:hover { background-color: #0056b3; transform: translateY(-1px); }
+.form-submit-btn:active { background-color: #003d80; transform: translateY(0); }
+
+/*--------------------------------------------------UserAccount-Page----------------------------------------------------------*/
+
+.user-account {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+
+}
+
+.logout-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.logout-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #d9534f;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #c9302c;
+}
+
+.user-account h2 {
+    color: #0A8AE6;
+    margin-bottom: 20px;
+}
+
+/* Стили для информации об аккаунте */
+.account-info {
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.change-password-btn {
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #0A8AE6;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.change-password-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Стили для списка заказов */
+.order-history {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.order-item:last-child {
+    border-bottom: none;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.order-status {
+    color: #0A8AE6;
+}
+
+/* Стили для списка товаров */
+.product-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.product-item {
+    padding: 8px 0;
+    border-top: 1px solid #ddd;
+}
+
+.product-item:first-child {
+    border-top: none;
+}
+
+.product-item span {
+    display: block;
+    margin: 3px 0;
+}
+/*--------------------------------------------------AdminPanel-Page----------------------------------------------------------*/
+
+.admin-panel {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.admin-logout-btn {
+    padding: 8px 15px;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #e60000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.admin-logout-btn:hover {
+    background-color: #b30000;
+}
+
+.admin-header h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+.admin-nav {
+    display: flex;
+    gap: 15px;
+}
+
+.admin-nav .nav-link {
+    font-size: 16px;
+    color: #0A8AE6;
+    text-decoration: none;
+}
+
+.admin-nav .nav-link.active {
+    font-weight: bold;
+    border-bottom: 2px solid #0A8AE6;
+}
+
+.admin-orders-section,
+.admin-products-section {
+    margin-top: 20px;
+}
+
+.admin-orders-section h2,
+.admin-products-section h2 {
+    color: #0A8AE6;
+    margin-bottom: 20px;
+}
+
+/* Стили заказов */
+.admin-order {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-order-info p {
+    font-size: 16px;
+    color: #333;
+}
+
+.admin-product-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.admin-product-item {
+    padding: 8px 0;
+    border-top: 1px solid #ddd;
+}
+
+.admin-product-item:first-child {
+    border-top: none;
+}
+
+.admin-product-item span {
+    display: block;
+    margin: 3px 0;
+}
+
+.admin-order-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.admin-status-select {
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.admin-update-status-btn {
+    padding: 8px 15px;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #0A8AE6;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.admin-update-status-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Стили товаров */
+.admin-product {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-product-info p {
+    font-size: 16px;
+    color: #333;
+}
+
+.admin-product-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.admin-edit-btn,
+.admin-delete-btn {
+    padding: 8px 15px;
+    font-size: 14px;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.admin-edit-btn {
+    background-color: #0A8AE6;
+}
+
+.admin-delete-btn {
+    background-color: #e60000;
+}
+
+.admin-edit-btn:hover {
+    background-color: #0056b3;
+}
+
+.admin-delete-btn:hover {
+    background-color: #b30000;
+}
+
+.admin-add-product-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #0A8AE6;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto 0;
+    transition: background-color 0.3s;
+}
+
+.admin-add-product-btn:hover {
+    background-color: #0056b3;
+}
+
+.admin-section {
+    display: none;
+}
+
+.admin-section.active {
+    display: block;
+}
+
+.admin-promocodes-section {
+    margin-top: 20px;
+}
+
+.admin-promocodes-section h2 {
+    color: #0A8AE6;
+    margin-bottom: 20px;
+}
+
+.admin-create-promocode-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #0A8AE6;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin: 10px 0;
+    transition: background-color 0.3s;
+}
+
+.admin-create-promocode-btn:hover {
+    background-color: #0056b3;
+}
+
+.admin-promocode-list {
+    margin-top: 20px;
+}
+
+.admin-promocode-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-promocode-item h3 {
+    color: #0A8AE6;
+    font-size: 18px;
+    margin: 0 0 8px;
+}
+
+.admin-promocode-item p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.admin-delete-promocode-btn {
+    padding: 8px 15px;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #e60000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.admin-delete-promocode-btn:hover {
+    background-color: #b30000;
+}
+
+.admin-news-section {
+    margin-top: 20px;
+}
+
+.admin-news-section h2 {
+    color: #0A8AE6;
+    margin-bottom: 20px;
+}
+
+.admin-add-news-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #0A8AE6;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin: 10px 0;
+    transition: background-color 0.3s;
+}
+
+.admin-add-news-btn:hover {
+    background-color: #0056b3;
+}
+
+.admin-news-list {
+    margin-top: 20px;
+}
+
+.admin-news-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-news-item h3 {
+    color: #0A8AE6;
+    font-size: 18px;
+    margin: 0 0 8px;
+}
+
+.admin-news-item p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.admin-delete-news-btn {
+    padding: 8px 15px;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #e60000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.admin-delete-news-btn:hover {
+    background-color: #b30000;
+}
+
+
+/*----------------------------------------------------------------------------------------------------------------*/
+/* Адаптивные стили для экранов шириной до 1200px */
+@media (max-width: 1200px) {
+
+    .calc-inp {
+        margin-bottom: 10px; /* Отступ между полями */
+    }
+
+    .slider-button {
+        flex-direction: column; /* Вертикальное расположение */
+        align-items: center; /* Центрируем содержимое */
+    }
+}
+
+/* Адаптивные стили для экранов шириной до 768px */
+@media (max-width: 768px) {
+
+
+    header .top-menu_ico {
+        flex-direction: column; /* Вертикальное расположение */
+        align-items: center; /* Центрируем содержимое */
+    }
+
+    .slider h1 {
+        font-size: 24px; /* Уменьшаем размер шрифта */
+    }
+}
+
+/* Адаптивные стили для экранов шириной до 480px */
+@media (max-width: 480px) {
+    .top-menu_ico h1 {
+        font-size: 24px; /* Уменьшаем размер шрифта */
+    }
+
+    .top-menu_ico h2 {
+        font-size: 8px; /* Уменьшаем размер шрифта */
+    }
+
+    .main-btn, .blue-btn {
+        font-size: 16px; /* Уменьшаем размер шрифта кнопок */
+        padding: 10px 30px; /* Уменьшаем отступы */
+    }
+
+    .slider h1 {
+        font-size: 20px; /* Уменьшаем размер шрифта */
+    }
+}
+/* Адаптивные медиазапросы */
+@media (max-width: 1024px) {
+    .catalog-item {
+        flex: 1 1 calc(33.33% - 40px); /* 3 элемента в ряд на средних экранах */
+        max-width: calc(33.33% - 40px);
+    }
+    .news-item {
+        flex: 1 1 calc(45% - 20px); /* 2 элемента в ряд на средних экранах */
+    }
+}
+
+@media (max-width: 768px) {
+    .catalog-item {
+        flex: 1 1 calc(50% - 40px); /* 2 элемента в ряд на узких экранах */
+        max-width: calc(50% - 40px);
+    }
+    .news-item {
+        flex: 1 1 calc(100% - 20px); /* 1 элемент в ряд на узких экранах */
+    }
+}
+
+@media (max-width: 480px) {
+    .catalog-item {
+        flex: 1 1 100%; /* 1 элемент в ряд на самых маленьких экранах */
+        max-width: 100%;
+    }
+    .main-footer {
+        font-size: 13px;
+    }
+    .main-menu-footer li, .sub-menu-footer li, .contacts-footer li {
+        font-size: 14px; /* Smaller font for mobile */
+    }
+    footer .wrap {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .icons-footer {
+        justify-content: center; /* Center social icons */
+    }
+}

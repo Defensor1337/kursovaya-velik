@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог - ВелоТрейд</title>
+    <link rel="icon" href="/images/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="wrap">
+            <div class="header-menu">
+                <div class="top-menu_ico">
+                    <img src="/images/logo.svg" alt="icon">
+                    <div class="text">
+                        <h1>ВелоТрейд</h1>
+                        <h2>Продажа велосипедов</h2>
+                    </div>
+                </div>
+                <div class="top-menu_content">
+                    <div class="top-menu_contacts">
+                        <div class="makeacall">
+                            <p>Заказать звонок:</p>
+                            <a href="">
+                                <p class="number">+7-927-029-41-17</p>
+                            </a>
+                        </div>
+                        <a href="">
+                            <p class="mail">test@mail.ru</p>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <nav>
+                <button class="burger-btn" onclick="toggleMenu()">☰</button>
+                <ul id="nav-menu-second">
+                    <a href="">
+                        <li>Главная</li>
+                    </a>
+                    <a href="">
+                        <li>Каталог</li>
+                    </a>
+                    <a href="">
+                        <li>Акции</li>
+                    </a>
+                    <a href="">
+                        <li>О компании</li>
+                    </a>
+                    <a href="">
+                        <li>Новости</li>
+                    </a>
+                </ul>
+                <div class="top-menu-btns">
+                    <a href=""><svg width="49" height="49" viewBox="0 0 49 49" fill="none" class="icon-basket"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.125 20.4167H8.16667M8.16667 20.4167L10.2083 40.8333H38.7917L40.8333 20.4167M8.16667 20.4167H16.3333M42.875 20.4167H40.8333M40.8333 20.4167H32.6667M32.6667 20.4167H16.3333M32.6667 20.4167V16.3333C32.6667 13.6118 31.0333 8.16667 24.5 8.16667C17.9667 8.16667 16.3333 13.6118 16.3333 16.3333V20.4167M24.5 28.5833V32.6667M30.625 28.5833V32.6667M18.375 28.5833V32.6667"
+                                stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg></a>
+                    <a href="" class="icon-account">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class=""
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 4C13.0609 4 14.0783 4.42143 14.8284 5.17157C15.5786 5.92172 16 6.93913 16 8C16 9.06087 15.5786 10.0783 14.8284 10.8284C14.0783 11.5786 13.0609 12 12 12C10.9391 12 9.92172 11.5786 9.17157 10.8284C8.42143 10.0783 8 9.06087 8 8C8 6.93913 8.42143 5.92172 9.17157 5.17157C9.92172 4.42143 10.9391 4 12 4ZM12 14C16.42 14 20 15.79 20 18V20H4V18C4 15.79 7.58 14 12 14Z"
+                                fill="white" />
+                        </svg>
+                        <p>Войти</p>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    </div>
+    <nav class="navigation">
+        <div class="wrap">
+            <div class="bot-menu">
+                <button class="burger-btn" onclick="toggleMenu()">☰</button>
+                <ul id="nav-menu">
+                    <a href="">
+                        <li>Главная</li>
+                    </a>
+                    <a href="">
+                        <li>Каталог</li>
+                    </a>
+                    <a href="">
+                        <li>Акции</li>
+                    </a>
+                    <a href="">
+                        <li>О компании</li>
+                    </a>
+                    <a href="">
+                        <li>Новости</li>
+                    </a>
+                </ul>
+            </div>
+            <div class="bot-menu-basket">
+                <a href=""><img class="basket" src="/images/basket.svg" alt="basket"></a>
+                <a href="" class="account">
+                    <img src="/images/account.svg" alt="account">
+                    <p>Войти</p>
+                </a>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="catalog">
+            <div class="wrap">
+                <div class="catalog-params">
+                    <div class="catalog-param-price catal-param">
+                        <h1>Цена</h1>
+                        <div class="catalog-param-inputs">
+                            <div class="catalog-singleinput">
+                                <span>от:</span>
+                                <input type="number">
+                                <span>₽</span>
+                            </div>
+                            <div class="catalog-singleinput">
+                                <span>до:</span>
+                                <input type="number">
+                                <span>₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="catalog-param-type catal-param">
+                        <h1>Тип</h1>
+                        <div class="catalog-param-inputs">
+                            <label class="catalog-radio-container">
+                                <input type="radio" name="option1">
+                                <span class="checkmark"></span>
+                                Все типы
+                            </label>
+                            <label class="catalog-radio-container">
+                                <input type="radio" name="option1">
+                                <span class="checkmark"></span>
+                                Горные
+                            </label>
+                            <label class="catalog-radio-container">
+                                <input type="radio" name="option1">
+                                <span class="checkmark"></span>
+                                Женские
+                            </label>
+                            <label class="catalog-radio-container">
+                                <input type="radio" name="option1">
+                                <span class="checkmark"></span>
+                                Мужские
+                            </label>
+                            <label class="catalog-radio-container">
+                                <input type="radio" name="option1">
+                                <span class="checkmark"></span>
+                                Детские
+                            </label>
+                            <label class="catalog-radio-container">
+                                <input type="radio" name="option1">
+                                <span class="checkmark"></span>
+                                Подростковые
+                            </label>
+                            <label class="catalog-radio-container">
+                                <input type="radio" name="option1">
+                                <span class="checkmark"></span>
+                                Дорожные
+                            </label>
+                            <label class="catalog-radio-container">
+                                <input type="radio" name="option1">
+                                <span class="checkmark"></span>
+                                Шоссейные
+                            </label>
+                            <label class="catalog-radio-container">
+                                <input type="radio" name="option1">
+                                <span class="checkmark"></span>
+                                Электровелосипеды
+                            </label>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="catalog-param-speed catal-param">
+                        <h1>Количество скоростей</h1>
+                        <div class="catalog-param-inputs">
+                            <label class="catalog-checkbox-container">
+                                <input type="checkbox" name="option1">
+                                <span class="checkmark"></span>
+                                1
+                            </label>
+                            <label class="catalog-checkbox-container">
+                                <input type="checkbox" name="option1">
+                                <span class="checkmark"></span>
+                                2
+                            </label>
+                            <label class="catalog-checkbox-container">
+                                <input type="checkbox" name="option1">
+                                <span class="checkmark"></span>
+                                3
+                            </label><label class="catalog-checkbox-container">
+                                <input type="checkbox" name="option1">
+                                <span class="checkmark"></span>
+                                5
+                            </label>
+                            <label class="catalog-checkbox-container">
+                                <input type="checkbox" name="option1">
+                                <span class="checkmark"></span>
+                                6
+                            </label>
+                            <label class="catalog-checkbox-container">
+                                <input type="checkbox" name="option1">
+                                <span class="checkmark"></span>
+                                7
+                            </label>
+                            <label class="catalog-checkbox-container">
+                                <input type="checkbox" name="option1">
+                                <span class="checkmark"></span>
+                                8
+                            </label>
+                            <label class="catalog-checkbox-container">
+                                <input type="checkbox" name="option1">
+                                <span class="checkmark"></span>
+                                9
+                            </label>
+                            <label class="catalog-checkbox-container">
+                                <input type="checkbox" name="option1">
+                                <span class="checkmark"></span>
+                                10
+                            </label>
+                            <label class="catalog-checkbox-container">
+                                <input type="checkbox" name="option1">
+                                <span class="checkmark"></span>
+                                11
+                            </label>
+                            <label class="catalog-checkbox-container">
+                                <input type="checkbox" name="option1">
+                                <span class="checkmark"></span>
+                                12
+                            </label>
+                            <label class="catalog-checkbox-container">
+                                <input type="checkbox" name="option1">
+                                <span class="checkmark"></span>
+                                14
+                            </label>
+                            <label class="catalog-checkbox-container">
+                                <input type="checkbox" name="option1">
+                                <span class="checkmark"></span>
+                                16
+                            </label>
+                            <label class="catalog-checkbox-container">
+                                <input type="checkbox" name="option1">
+                                <span class="checkmark"></span>
+                                18
+                            </label>
+                            <label class="catalog-checkbox-container">
+                                <input type="checkbox" name="option1">
+                                <span class="checkmark"></span>
+                                20
+                            </label>
+                            <label class="catalog-checkbox-container">
+                                <input type="checkbox" name="option1">
+                                <span class="checkmark"></span>
+                                21
+                            </label>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="catalog-params-btns">
+                        <div class="catalog-submit-btn">Подобрать</div>
+                        <div class="catalog-reset-btn">
+                            Сбросить фильтры
+                        </div>
+                    </div>
+                </div>
+                <div class="catalog-main">
+                    <h1>Каталог</h1>
+                    <div class="catalog-search">
+                        <div class="catalog-search-inp">
+                            <input type="text" placeholder="Поиск">
+                            <div class="catalog-search-inp-btn"><svg width="18" height="18" viewBox="0 0 18 18"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M16.6 18L10.3 11.7C9.8 12.1 9.225 12.4167 8.575 12.65C7.925 12.8833 7.23333 13 6.5 13C4.68333 13 3.146 12.3707 1.888 11.112C0.63 9.85333 0.000667196 8.316 5.29101e-07 6.5C-0.000666138 4.684 0.628667 3.14667 1.888 1.888C3.14733 0.629333 4.68467 0 6.5 0C8.31533 0 9.853 0.629333 11.113 1.888C12.373 3.14667 13.002 4.684 13 6.5C13 7.23333 12.8833 7.925 12.65 8.575C12.4167 9.225 12.1 9.8 11.7 10.3L18 16.6L16.6 18ZM6.5 11C7.75 11 8.81267 10.5627 9.688 9.688C10.5633 8.81333 11.0007 7.75067 11 6.5C10.9993 5.24933 10.562 4.187 9.688 3.313C8.814 2.439 7.75133 2.00133 6.5 2C5.24867 1.99867 4.18633 2.43633 3.313 3.313C2.43967 4.18967 2.002 5.252 2 6.5C1.998 7.748 2.43567 8.81067 3.313 9.688C4.19033 10.5653 5.25267 11.0027 6.5 11Z"
+                                        fill="#0A8AE6" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="catalog-search-filters">
+                            <select id="sort-price" class="catalog-sort-select">
+                                <option value="default">По умолчанию</option>
+                                <option value="asc">Сначала дешевые</option>
+                                <option value="desc">Сначала дорогие</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="catalog-content">
+                        <div class="catalog-cell">
+                            <img src="/images/items/item1.jpg" alt="item-pic">
+                            <h1>Горный велосипед Stinger</h1>
+                            <div class="catalog-cell-basket">
+                                <p>34 000 ₽</p>
+                                <div class="catalog-cell-basket-btn"><svg width="20" height="20" viewBox="0 0 20 20"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M16 16C14.89 16 14 16.89 14 18C14 18.5304 14.2107 19.0391 14.5858 19.4142C14.9609 19.7893 15.4696 20 16 20C16.5304 20 17.0391 19.7893 17.4142 19.4142C17.7893 19.0391 18 18.5304 18 18C18 17.4696 17.7893 16.9609 17.4142 16.5858C17.0391 16.2107 16.5304 16 16 16ZM0 0V2H2L5.6 9.59L4.24 12.04C4.09 12.32 4 12.65 4 13C4 13.5304 4.21071 14.0391 4.58579 14.4142C4.96086 14.7893 5.46957 15 6 15H18V13H6.42C6.3537 13 6.29011 12.9737 6.24322 12.9268C6.19634 12.8799 6.17 12.8163 6.17 12.75C6.17 12.7 6.18 12.66 6.2 12.63L7.1 11H14.55C15.3 11 15.96 10.58 16.3 9.97L19.88 3.5C19.95 3.34 20 3.17 20 3C20 2.73478 19.8946 2.48043 19.7071 2.29289C19.5196 2.10536 19.2652 2 19 2H4.21L3.27 0M6 16C4.89 16 4 16.89 4 18C4 18.5304 4.21071 19.0391 4.58579 19.4142C4.96086 19.7893 5.46957 20 6 20C6.53043 20 7.03914 19.7893 7.41421 19.4142C7.78929 19.0391 8 18.5304 8 18C8 17.4696 7.78929 16.9609 7.41421 16.5858C7.03914 16.2107 6.53043 16 6 16Z"
+                                            fill="none" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="catalog-cell">
+                            <img src="/images/items/item1.jpg" alt="item-pic">
+                            <h1>Горный велосипед Stinger</h1>
+                            <div class="catalog-cell-basket">
+                                <p>34 000 ₽</p>
+                                <div class="catalog-cell-basket-btn"><svg width="20" height="20" viewBox="0 0 20 20"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M16 16C14.89 16 14 16.89 14 18C14 18.5304 14.2107 19.0391 14.5858 19.4142C14.9609 19.7893 15.4696 20 16 20C16.5304 20 17.0391 19.7893 17.4142 19.4142C17.7893 19.0391 18 18.5304 18 18C18 17.4696 17.7893 16.9609 17.4142 16.5858C17.0391 16.2107 16.5304 16 16 16ZM0 0V2H2L5.6 9.59L4.24 12.04C4.09 12.32 4 12.65 4 13C4 13.5304 4.21071 14.0391 4.58579 14.4142C4.96086 14.7893 5.46957 15 6 15H18V13H6.42C6.3537 13 6.29011 12.9737 6.24322 12.9268C6.19634 12.8799 6.17 12.8163 6.17 12.75C6.17 12.7 6.18 12.66 6.2 12.63L7.1 11H14.55C15.3 11 15.96 10.58 16.3 9.97L19.88 3.5C19.95 3.34 20 3.17 20 3C20 2.73478 19.8946 2.48043 19.7071 2.29289C19.5196 2.10536 19.2652 2 19 2H4.21L3.27 0M6 16C4.89 16 4 16.89 4 18C4 18.5304 4.21071 19.0391 4.58579 19.4142C4.96086 19.7893 5.46957 20 6 20C6.53043 20 7.03914 19.7893 7.41421 19.4142C7.78929 19.0391 8 18.5304 8 18C8 17.4696 7.78929 16.9609 7.41421 16.5858C7.03914 16.2107 6.53043 16 6 16Z"
+                                            fill="none" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="catalog-cell">
+                            <img src="/images/items/item1.jpg" alt="item-pic">
+                            <h1>Горный велосипед Stinger</h1>
+                            <div class="catalog-cell-basket">
+                                <p>34 000 ₽</p>
+                                <div class="catalog-cell-basket-btn">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M16 16C14.89 16 14 16.89 14 18C14 18.5304 14.2107 19.0391 14.5858 19.4142C14.9609 19.7893 15.4696 20 16 20C16.5304 20 17.0391 19.7893 17.4142 19.4142C17.7893 19.0391 18 18.5304 18 18C18 17.4696 17.7893 16.9609 17.4142 16.5858C17.0391 16.2107 16.5304 16 16 16ZM0 0V2H2L5.6 9.59L4.24 12.04C4.09 12.32 4 12.65 4 13C4 13.5304 4.21071 14.0391 4.58579 14.4142C4.96086 14.7893 5.46957 15 6 15H18V13H6.42C6.3537 13 6.29011 12.9737 6.24322 12.9268C6.19634 12.8799 6.17 12.8163 6.17 12.75C6.17 12.7 6.18 12.66 6.2 12.63L7.1 11H14.55C15.3 11 15.96 10.58 16.3 9.97L19.88 3.5C19.95 3.34 20 3.17 20 3C20 2.73478 19.8946 2.48043 19.7071 2.29289C19.5196 2.10536 19.2652 2 19 2H4.21L3.27 0M6 16C4.89 16 4 16.89 4 18C4 18.5304 4.21071 19.0391 4.58579 19.4142C4.96086 19.7893 5.46957 20 6 20C6.53043 20 7.03914 19.7893 7.41421 19.4142C7.78929 19.0391 8 18.5304 8 18C8 17.4696 7.78929 16.9609 7.41421 16.5858C7.03914 16.2107 6.53043 16 6 16Z"
+                                            fill="none" />
+                                    </svg>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="catalog-cell">
+                            <img src="/images/items/item1.jpg" alt="item-pic">
+                            <h1>Горный велосипед Stinger</h1>
+                            <div class="catalog-cell-basket">
+                                <p>34 000 ₽</p>
+                                <div class="catalog-cell-basket-btn"><svg width="20" height="20" viewBox="0 0 20 20"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M16 16C14.89 16 14 16.89 14 18C14 18.5304 14.2107 19.0391 14.5858 19.4142C14.9609 19.7893 15.4696 20 16 20C16.5304 20 17.0391 19.7893 17.4142 19.4142C17.7893 19.0391 18 18.5304 18 18C18 17.4696 17.7893 16.9609 17.4142 16.5858C17.0391 16.2107 16.5304 16 16 16ZM0 0V2H2L5.6 9.59L4.24 12.04C4.09 12.32 4 12.65 4 13C4 13.5304 4.21071 14.0391 4.58579 14.4142C4.96086 14.7893 5.46957 15 6 15H18V13H6.42C6.3537 13 6.29011 12.9737 6.24322 12.9268C6.19634 12.8799 6.17 12.8163 6.17 12.75C6.17 12.7 6.18 12.66 6.2 12.63L7.1 11H14.55C15.3 11 15.96 10.58 16.3 9.97L19.88 3.5C19.95 3.34 20 3.17 20 3C20 2.73478 19.8946 2.48043 19.7071 2.29289C19.5196 2.10536 19.2652 2 19 2H4.21L3.27 0M6 16C4.89 16 4 16.89 4 18C4 18.5304 4.21071 19.0391 4.58579 19.4142C4.96086 19.7893 5.46957 20 6 20C6.53043 20 7.03914 19.7893 7.41421 19.4142C7.78929 19.0391 8 18.5304 8 18C8 17.4696 7.78929 16.9609 7.41421 16.5858C7.03914 16.2107 6.53043 16 6 16Z"
+                                            fill="none" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="catalog-cell">
+                            <img src="/images/items/item1.jpg" alt="item-pic">
+                            <h1>Горный велосипед Stinger</h1>
+                            <div class="catalog-cell-basket">
+                                <p>34 000 ₽</p>
+                                <div class="catalog-cell-basket-btn"><svg width="20" height="20" viewBox="0 0 20 20"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M16 16C14.89 16 14 16.89 14 18C14 18.5304 14.2107 19.0391 14.5858 19.4142C14.9609 19.7893 15.4696 20 16 20C16.5304 20 17.0391 19.7893 17.4142 19.4142C17.7893 19.0391 18 18.5304 18 18C18 17.4696 17.7893 16.9609 17.4142 16.5858C17.0391 16.2107 16.5304 16 16 16ZM0 0V2H2L5.6 9.59L4.24 12.04C4.09 12.32 4 12.65 4 13C4 13.5304 4.21071 14.0391 4.58579 14.4142C4.96086 14.7893 5.46957 15 6 15H18V13H6.42C6.3537 13 6.29011 12.9737 6.24322 12.9268C6.19634 12.8799 6.17 12.8163 6.17 12.75C6.17 12.7 6.18 12.66 6.2 12.63L7.1 11H14.55C15.3 11 15.96 10.58 16.3 9.97L19.88 3.5C19.95 3.34 20 3.17 20 3C20 2.73478 19.8946 2.48043 19.7071 2.29289C19.5196 2.10536 19.2652 2 19 2H4.21L3.27 0M6 16C4.89 16 4 16.89 4 18C4 18.5304 4.21071 19.0391 4.58579 19.4142C4.96086 19.7893 5.46957 20 6 20C6.53043 20 7.03914 19.7893 7.41421 19.4142C7.78929 19.0391 8 18.5304 8 18C8 17.4696 7.78929 16.9609 7.41421 16.5858C7.03914 16.2107 6.53043 16 6 16Z"
+                                            fill="none" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="catalog-cell">
+                            <img src="/images/items/item1.jpg" alt="item-pic">
+                            <h1>Горный велосипед Stinger</h1>
+                            <div class="catalog-cell-basket">
+                                <p>34 000 ₽</p>
+                                <div class="catalog-cell-basket-btn"><svg width="20" height="20" viewBox="0 0 20 20"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M16 16C14.89 16 14 16.89 14 18C14 18.5304 14.2107 19.0391 14.5858 19.4142C14.9609 19.7893 15.4696 20 16 20C16.5304 20 17.0391 19.7893 17.4142 19.4142C17.7893 19.0391 18 18.5304 18 18C18 17.4696 17.7893 16.9609 17.4142 16.5858C17.0391 16.2107 16.5304 16 16 16ZM0 0V2H2L5.6 9.59L4.24 12.04C4.09 12.32 4 12.65 4 13C4 13.5304 4.21071 14.0391 4.58579 14.4142C4.96086 14.7893 5.46957 15 6 15H18V13H6.42C6.3537 13 6.29011 12.9737 6.24322 12.9268C6.19634 12.8799 6.17 12.8163 6.17 12.75C6.17 12.7 6.18 12.66 6.2 12.63L7.1 11H14.55C15.3 11 15.96 10.58 16.3 9.97L19.88 3.5C19.95 3.34 20 3.17 20 3C20 2.73478 19.8946 2.48043 19.7071 2.29289C19.5196 2.10536 19.2652 2 19 2H4.21L3.27 0M6 16C4.89 16 4 16.89 4 18C4 18.5304 4.21071 19.0391 4.58579 19.4142C4.96086 19.7893 5.46957 20 6 20C6.53043 20 7.03914 19.7893 7.41421 19.4142C7.78929 19.0391 8 18.5304 8 18C8 17.4696 7.78929 16.9609 7.41421 16.5858C7.03914 16.2107 6.53043 16 6 16Z"
+                                            fill="none" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="discount">
+            <div class="wrap">
+                <div class="advert-carousel">
+                    <div class="advert-carousel-images">
+                        <img src="/images/advert-img1.jpg" alt="slider1-pic1" class="advert-carousel-item active">
+                        <img src="/images/advert-img2.jpg" alt="slider1-pic2" class="advert-carousel-item">
+                        <img src="/images/advert-img3.jpg" alt="slider1-pic3" class="advert-carousel-item">
+
+                    </div>
+                    <div class="advert-carousel-indicators">
+                        <span class="advert-dot"></span>
+                        <span class="advert-dot"></span>
+                        <span class="advert-dot"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <footer>
+        <div class="main-footer">
+            <div class="wrap">
+                <div class="main-menu-footer">
+                    <ul>
+                        <a href="">
+                            <li>Главная</li>
+                        </a>
+                        <a href="">
+                            <li>Категории</li>
+                        </a>
+                        <a href="">
+                            <li>Акции</li>
+                        </a>
+                        <a href="">
+                            <li>О компании</li>
+                        </a>
+                        <a href="">
+                            <li>Новости</li>
+                        </a>
+                    </ul>
+                </div>
+                <div class="sub-menu-footer">
+                    <ul>
+                        <a href="">
+                            <li>Горные велосипеды</li>
+                        </a>
+                        <a href="">
+                            <li>Мужские велосипеды</li>
+                        </a>
+                        <a href="">
+                            <li>Женские велосипеды</li>
+                        </a>
+                        <a href="">
+                            <li>Детские велосипеды</li>
+                        </a>
+                        <a href="">
+                            <li>Дорожные велосипеды</li>
+                        </a>
+                        <a href="">
+                            <li>Шоссейные велосипеды</li>
+                        </a>
+                        <a href="">
+                            <li>Подростковые велосипеды</li>
+                        </a>
+                        <a href="">
+                            <li>Электровелосипеды</li>
+                        </a>
+                    </ul>
+                </div>
+                <div class="contacts-footer">
+                    <h1>Контакты</h1>
+                    <ul>
+                        <a href="">
+                            <li>+7-927-029-41-17</li>
+                        </a>
+                        <a href="">
+                            <li>mail@mail.ru</li>
+                        </a>
+                    </ul>
+                    <div class="icons-footer">
+                        <a href=""><svg width="40" height="40" viewBox="0 0 40 40" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M7.1 7.1C5 9.22 5 12.61 5 19.4V20.6C5 27.38 5 30.77 7.1 32.9C9.22 35 12.61 35 19.4 35H20.6C27.38 35 30.77 35 32.9 32.9C35 30.78 35 27.39 35 20.6V19.4C35 12.62 35 9.23 32.9 7.1C30.78 5 27.39 5 20.6 5H19.4C12.62 5 9.23 5 7.1 7.1ZM10.06 14.13H13.5C13.61 19.85 16.13 22.27 18.13 22.77V14.13H21.36V19.06C23.33 18.85 25.41 16.6 26.11 14.12H29.33C29.0673 15.4037 28.5427 16.6194 27.7891 17.6914C27.0355 18.7633 26.069 19.6683 24.95 20.35C26.1991 20.9714 27.3021 21.8507 28.1864 22.9298C29.0707 24.0089 29.7161 25.2632 30.08 26.61H26.53C25.77 24.24 23.87 22.4 21.36 22.15V26.61H20.96C14.12 26.61 10.22 21.93 10.06 14.13Z" />
+                            </svg></a>
+                        <a href=""><svg width="40" height="40" viewBox="0 0 40 40" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M19.9999 3.33325C10.7999 3.33325 3.33325 10.7999 3.33325 19.9999C3.33325 29.1999 10.7999 36.6666 19.9999 36.6666C29.1999 36.6666 36.6666 29.1999 36.6666 19.9999C36.6666 10.7999 29.1999 3.33325 19.9999 3.33325ZM27.7332 14.6666C27.4832 17.2999 26.3999 23.6999 25.8499 26.6499C25.6166 27.8999 25.1499 28.3166 24.7166 28.3666C23.7499 28.4499 23.0166 27.7333 22.0833 27.1166C20.6166 26.1499 19.7833 25.5499 18.3666 24.6166C16.7166 23.5333 17.7833 22.9333 18.7333 21.9666C18.9833 21.7166 23.2499 17.8333 23.3333 17.4833C23.3448 17.4302 23.3433 17.3752 23.3288 17.3229C23.3142 17.2706 23.2872 17.2227 23.2499 17.1833C23.1499 17.0999 23.0166 17.1333 22.8999 17.1499C22.7499 17.1833 20.4166 18.7333 15.8666 21.7999C15.1999 22.2499 14.5999 22.4833 14.0666 22.4666C13.4666 22.4499 12.3333 22.1333 11.4833 21.8499C10.4333 21.5166 9.61659 21.3333 9.68325 20.7499C9.71659 20.4499 10.1333 20.1499 10.9166 19.8333C15.7833 17.7166 19.0166 16.3166 20.6333 15.6499C25.2666 13.7166 26.2166 13.3833 26.8499 13.3833C26.9833 13.3833 27.2999 13.4166 27.4999 13.5833C27.6666 13.7166 27.7166 13.8999 27.7332 14.0333C27.7166 14.1333 27.7499 14.4333 27.7332 14.6666Z" />
+                            </svg></a>
+                        <a href=""><svg width="40" height="40" viewBox="0 0 40 40" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M20.0017 3.33325C29.2067 3.33325 36.6683 10.7949 36.6683 19.9999C36.6683 29.2049 29.2067 36.6666 20.0017 36.6666C17.0562 36.6717 14.1626 35.8922 11.6183 34.4083L3.34165 36.6666L5.59499 28.3866C4.10992 25.8415 3.32982 22.9466 3.33499 19.9999C3.33499 10.7949 10.7967 3.33325 20.0017 3.33325ZM14.3217 12.1666L13.9883 12.1799C13.7728 12.1948 13.5622 12.2514 13.3683 12.3466C13.1876 12.4491 13.0226 12.5771 12.8783 12.7266C12.6783 12.9149 12.565 13.0783 12.4433 13.2366C11.8269 14.0381 11.4949 15.0221 11.5 16.0333C11.5033 16.8499 11.7167 17.6449 12.05 18.3883C12.7317 19.8916 13.8533 21.4833 15.3333 22.9583C15.69 23.3133 16.04 23.6699 16.4167 24.0016C18.2557 25.6206 20.4471 26.7882 22.8167 27.4116L23.7633 27.5566C24.0717 27.5733 24.38 27.5499 24.69 27.5349C25.1753 27.5093 25.6491 27.3779 26.0783 27.1499C26.2964 27.0372 26.5094 26.9148 26.7167 26.7833C26.7167 26.7833 26.7872 26.7355 26.925 26.6333C27.15 26.4666 27.2883 26.3483 27.475 26.1533C27.615 26.0088 27.7317 25.841 27.825 25.6499C27.955 25.3783 28.085 24.8599 28.1383 24.4283C28.1783 24.0983 28.1667 23.9183 28.1617 23.8066C28.155 23.6283 28.0067 23.4433 27.845 23.3649L26.875 22.9299C26.875 22.9299 25.425 22.2983 24.5383 21.8949C24.4455 21.8545 24.3461 21.8314 24.245 21.8266C24.1309 21.8147 24.0157 21.8274 23.907 21.8639C23.7983 21.9004 23.6987 21.9599 23.615 22.0383C23.6067 22.0349 23.495 22.1299 22.29 23.5899C22.2208 23.6829 22.1256 23.7531 22.0163 23.7917C21.9071 23.8303 21.7888 23.8355 21.6767 23.8066C21.568 23.7776 21.4616 23.7409 21.3583 23.6966C21.1517 23.6099 21.08 23.5766 20.9383 23.5166C19.9814 23.0998 19.0957 22.5357 18.3133 21.8449C18.1033 21.6616 17.9083 21.4616 17.7083 21.2683C17.0527 20.6403 16.4812 19.9299 16.0083 19.1549L15.91 18.9966C15.8404 18.8896 15.7834 18.7749 15.74 18.6549C15.6767 18.4099 15.8417 18.2133 15.8417 18.2133C15.8417 18.2133 16.2467 17.7699 16.435 17.5299C16.6183 17.2966 16.7733 17.0699 16.8733 16.9083C17.07 16.5916 17.1317 16.2666 17.0283 16.0149C16.5617 14.8749 16.0794 13.741 15.5817 12.6133C15.4833 12.3899 15.1917 12.2299 14.9267 12.1983C14.8367 12.1871 14.7467 12.1783 14.6567 12.1716C14.4329 12.1588 14.2085 12.161 13.985 12.1783L14.3217 12.1666Z" />
+                            </svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="wrap">
+                <p>© 2002-2024, Интернет-магазин ВелоТрейд в Санкт-Петербурге - 22 года нам доверяют покупатели </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/script.js"></script>
+</body>
+
+</html>
