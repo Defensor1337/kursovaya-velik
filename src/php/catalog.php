@@ -8,183 +8,193 @@ class CatalogPage extends StandardPage {
     public function __construct($conn) {
         $this->conn = $conn;
     }
+
     public function getContent() {
 
         $conn = $this->conn;
-        // Получение данных из таблицы
-        $query = $conn->query("SELECT * FROM products");
-        // Получаем все записи как ассоциативный массив
+
+        // Получаем параметры из запроса
+        $category = isset($_GET['category']) ? $_GET['category'] : null;
+        $type = isset($_GET['type']) ? $_GET['type'] : null;
+        $ageGroup = isset($_GET['age']) ? $_GET['age'] : null;
+        $priceMin = isset($_GET['priceMin']) ? $_GET['priceMin'] : 0;
+        $priceMax = isset($_GET['priceMax']) ? $_GET['priceMax'] : 9999999;
+        $gender = isset($_GET['gender']) ? $_GET['gender'] : null;
+
+        // Создаем массив условий фильтрации
+        $conditions = [];
+        $params = [];
+
+        if ($type) {
+            $conditions[] = "type = ?";
+            $params[] = $type;
+        }
+
+        if ($ageGroup) {
+            $conditions[] = "age_group = ?";
+            $params[] = $ageGroup;
+        }
+
+        if ($priceMin || $priceMax) {
+            $conditions[] = "price BETWEEN ? AND ?";
+            $params[] = $priceMin;
+            $params[] = $priceMax;
+        }
+
+        if ($gender) {
+            $conditions[] = "gender = ?";
+            $params[] = $gender;
+        }
+
+        // Формируем основной SQL-запрос
+        $sql = "SELECT * FROM products";
+        if (!empty($conditions)) {
+            $sql .= " WHERE " . implode(' AND ', $conditions);
+        }
+
+        $stmt = $conn->prepare($sql);
+        if ($params) {
+            $types = str_repeat('s', count($params)); // Все параметры передаются как строки
+            $stmt->bind_param($types, ...$params);
+        }
+        $stmt->execute();
+        $query = $stmt->get_result();
         $catalogItems = $query->fetch_all(MYSQLI_ASSOC);
 
-        // Вывод результата
-        echo "<pre>";
-        print_r($catalogItems); // Для красивого вывода массива
-        echo "</pre>";
+        $brands = $this->getFilterValues('brand');
+        $types = $this->getFilterValues('type');
+        $genders = $this->getFilterValues('gender');
+        $ageGroups = $this->getFilterValues('age_group');
+        $gears = $this->getFilterValues('gears');
 
+        $searchParams  = <<<HTML
+            <div class="catalog-param-brand catal-param">
+                <h1>Бренд</h1>
+                <div class="catalog-param-inputs">
+        HTML;
+
+        foreach ($brands as $brand) {
+            $searchParams .= <<<HTML
+                <label class="catalog-checkbox-container">
+                    <input type="checkbox" name="brand[]" value="{$brand}">
+                    <span class="checkmark"></span>
+                    {$brand}
+                </label>
+            HTML;
+        }
+
+        $searchParams .= <<<HTML
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="catalog-param-type catal-param">
+                <h1>Тип</h1>
+                <div class="catalog-param-inputs">
+        HTML;
+
+        foreach ($types as $typeOption) {
+            $checked = (isset($type) && $type == $typeOption) ? 'checked' : '';
+            $searchParams .= <<<HTML
+                <label class="catalog-checkbox-container">
+                    <input type="checkbox" name="type[]" value="{$typeOption}" {$checked}>
+                    <span class="checkmark"></span>
+                    {$typeOption}
+                </label>
+HTML;
+        }
+
+        $searchParams .= <<<HTML
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="catalog-param-gender catal-param">
+                <h1>Пол</h1>
+                <div class="catalog-param-inputs">
+        HTML;
+
+        foreach ($genders as $genderOption) {
+            $checked = (isset($gender) && $gender == $genderOption) ? 'checked' : '';
+            $searchParams .= <<<HTML
+                <label class="catalog-checkbox-container">
+                    <input type="checkbox" name="gender[]" value="{$genderOption}" {$checked}>
+                    <span class="checkmark"></span>
+                    {$genderOption}
+                </label>
+HTML;
+        }
+
+        $searchParams .= <<<HTML
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="catalog-param-age-group catal-param">
+                <h1>Возрастная группа</h1>
+                <div class="catalog-param-inputs">
+        HTML;
+
+        foreach ($ageGroups as $ageGroupOption) {
+            $checked = (isset($ageGroup) && $ageGroup == $ageGroupOption) ? 'checked' : '';
+            $searchParams .= <<<HTML
+                <label class="catalog-checkbox-container">
+                    <input type="checkbox" name="age_group[]" value="{$ageGroupOption}" {$checked}>
+                    <span class="checkmark"></span>
+                    {$ageGroupOption}
+                </label>
+HTML;
+        }
+
+        $searchParams .= <<<HTML
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="catalog-param-gears catal-param">
+                <h1>Количество скоростей</h1>
+                <div class="catalog-param-inputs">
+        HTML;
+
+        foreach ($gears as $gear) {
+            $searchParams .= <<<HTML
+                <label class="catalog-checkbox-container">
+                    <input type="checkbox" name="gears[]" value="{$gear}">
+                    <span class="checkmark"></span>
+                    {$gear}
+                </label>
+            HTML;
+        }
+
+        $searchParams .= <<<HTML
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="catalog-params-btns">
+                <button type="button" id="apply-filters" class="catalog-submit-btn">Подобрать</button>
+                <button type="button" id="reset-filters" class="catalog-reset-btn">Сбросить фильтры</button>
+            </div>
+        HTML;
 
         $html = <<<HTML
             <div class="catalog">
-            <div class="wrap">
-                <div class="catalog-params">
-                    <div class="catalog-param-price catal-param">
-                        <h1>Цена</h1>
-                        <div class="catalog-param-inputs">
-                            <div class="catalog-singleinput">
-                                <span>от:</span>
-                                <input type="number">
-                                <span>₽</span>
+                <div class="wrap">
+                    <form id="filters-form" class="catalog-params">
+                        <div class="catalog-param-price catal-param">
+                            <h1>Цена</h1>
+                            <div class="catalog-param-inputs">
+                                <div class="catalog-singleinput">
+                                    <span>от:</span>
+                                    <input type="number" name="price_min" value="{$priceMin}">
+                                    <span>₽</span>
+                                </div>
+                                <div class="catalog-singleinput">
+                                    <span>до:</span>
+                                    <input type="number" name="price_max" value="{$priceMax}">
+                                    <span>₽</span>
+                                </div>
                             </div>
-                            <div class="catalog-singleinput">
-                                <span>до:</span>
-                                <input type="number">
-                                <span>₽</span>
-                            </div>
                         </div>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="catalog-param-type catal-param">
-                        <h1>Тип</h1>
-                        <div class="catalog-param-inputs">
-                            <label class="catalog-radio-container">
-                                <input type="radio" name="option1">
-                                <span class="checkmark"></span>
-                                Все типы
-                            </label>
-                            <label class="catalog-radio-container">
-                                <input type="radio" name="option1">
-                                <span class="checkmark"></span>
-                                Горные
-                            </label>
-                            <label class="catalog-radio-container">
-                                <input type="radio" name="option1">
-                                <span class="checkmark"></span>
-                                Женские
-                            </label>
-                            <label class="catalog-radio-container">
-                                <input type="radio" name="option1">
-                                <span class="checkmark"></span>
-                                Мужские
-                            </label>
-                            <label class="catalog-radio-container">
-                                <input type="radio" name="option1">
-                                <span class="checkmark"></span>
-                                Детские
-                            </label>
-                            <label class="catalog-radio-container">
-                                <input type="radio" name="option1">
-                                <span class="checkmark"></span>
-                                Подростковые
-                            </label>
-                            <label class="catalog-radio-container">
-                                <input type="radio" name="option1">
-                                <span class="checkmark"></span>
-                                Дорожные
-                            </label>
-                            <label class="catalog-radio-container">
-                                <input type="radio" name="option1">
-                                <span class="checkmark"></span>
-                                Шоссейные
-                            </label>
-                            <label class="catalog-radio-container">
-                                <input type="radio" name="option1">
-                                <span class="checkmark"></span>
-                                Электровелосипеды
-                            </label>
-                        </div>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="catalog-param-speed catal-param">
-                        <h1>Количество скоростей</h1>
-                        <div class="catalog-param-inputs">
-                            <label class="catalog-checkbox-container">
-                                <input type="checkbox" name="option1">
-                                <span class="checkmark"></span>
-                                1
-                            </label>
-                            <label class="catalog-checkbox-container">
-                                <input type="checkbox" name="option1">
-                                <span class="checkmark"></span>
-                                2
-                            </label>
-                            <label class="catalog-checkbox-container">
-                                <input type="checkbox" name="option1">
-                                <span class="checkmark"></span>
-                                3
-                            </label><label class="catalog-checkbox-container">
-                                <input type="checkbox" name="option1">
-                                <span class="checkmark"></span>
-                                5
-                            </label>
-                            <label class="catalog-checkbox-container">
-                                <input type="checkbox" name="option1">
-                                <span class="checkmark"></span>
-                                6
-                            </label>
-                            <label class="catalog-checkbox-container">
-                                <input type="checkbox" name="option1">
-                                <span class="checkmark"></span>
-                                7
-                            </label>
-                            <label class="catalog-checkbox-container">
-                                <input type="checkbox" name="option1">
-                                <span class="checkmark"></span>
-                                8
-                            </label>
-                            <label class="catalog-checkbox-container">
-                                <input type="checkbox" name="option1">
-                                <span class="checkmark"></span>
-                                9
-                            </label>
-                            <label class="catalog-checkbox-container">
-                                <input type="checkbox" name="option1">
-                                <span class="checkmark"></span>
-                                10
-                            </label>
-                            <label class="catalog-checkbox-container">
-                                <input type="checkbox" name="option1">
-                                <span class="checkmark"></span>
-                                11
-                            </label>
-                            <label class="catalog-checkbox-container">
-                                <input type="checkbox" name="option1">
-                                <span class="checkmark"></span>
-                                12
-                            </label>
-                            <label class="catalog-checkbox-container">
-                                <input type="checkbox" name="option1">
-                                <span class="checkmark"></span>
-                                14
-                            </label>
-                            <label class="catalog-checkbox-container">
-                                <input type="checkbox" name="option1">
-                                <span class="checkmark"></span>
-                                16
-                            </label>
-                            <label class="catalog-checkbox-container">
-                                <input type="checkbox" name="option1">
-                                <span class="checkmark"></span>
-                                18
-                            </label>
-                            <label class="catalog-checkbox-container">
-                                <input type="checkbox" name="option1">
-                                <span class="checkmark"></span>
-                                20
-                            </label>
-                            <label class="catalog-checkbox-container">
-                                <input type="checkbox" name="option1">
-                                <span class="checkmark"></span>
-                                21
-                            </label>
-                        </div>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="catalog-params-btns">
-                        <div class="catalog-submit-btn">Подобрать</div>
-                        <div class="catalog-reset-btn">
-                            Сбросить фильтры
-                        </div>
-                    </div>
-                </div>
+                        <div class="divider"></div>
+
+                        $searchParams
+                    </form>
                 <div class="catalog-main">
                     <h1>Каталог</h1>
                     <div class="catalog-search">
@@ -198,24 +208,35 @@ class CatalogPage extends StandardPage {
                                 </svg>
                             </div>
                         </div>
-                        <div class="catalog-search-filters">
-                            <select id="sort-price" class="catalog-sort-select">
-                                <option value="default">По умолчанию</option>
-                                <option value="asc">Сначала дешевые</option>
-                                <option value="desc">Сначала дорогие</option>
-                            </select>
-                        </div>
+                        
                     </div>
-                    <div class="catalog-content">
+                    <div class="catalog-content" id="catalog-items">
 HTML;
-        foreach ($catalogItems as $item) {  
+
+        foreach ($catalogItems as $item) {
+            // Подготовка запроса для получения главного изображения
+            $imgQuery = "SELECT image_url FROM product_images WHERE product_id = ? AND is_main = 1";
+            $stmt = $conn->prepare($imgQuery);
+            $stmt->bind_param("i", $item['id']); // Привязываем product_id
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $image = $result->fetch_assoc();
+            
+            /// Если изображение найдено, преобразуем его в base64
+            if ($image) {
+                $imageData = base64_encode($image['image_url']);
+                $imageUrl = "data:image/jpeg;base64,{$imageData}"; // Подставьте корректный MIME-тип (например, image/png, если это PNG)
+            } else {
+                $imageUrl = '/images/products/default.jpg'; // Путь к дефолтному изображению
+            }
+
             $html .= "
-            <div class='catalog-cell' onclick='window.location.href=\"item.php?id={$item['id']}\"'>
-                <img src='/images/items/item1.jpg' alt='item-pic'>
+            <div class='catalog-cell' data-product-id='{$item['id']}'>
+                <img src='{$imageUrl}' alt='item-pic'>
                 <h1>{$item['name']}</h1>
                 <div class='catalog-cell-basket'>
                     <p>{$item['price']} ₽</p>
-                    <div class='catalog-cell-basket-btn'>
+                    <div class='catalog-cell-basket-btn' data-product-id='{$item['id']}' data-quantity='1'>
                         <svg width='20' height='20' viewBox='0 0 20 20'
                             fill='none' xmlns='http://www.w3.org/2000/svg'>
                             <path
@@ -227,102 +248,25 @@ HTML;
             </div>
             ";
         }
-        $html .= <<<HTML
-                        <div class="catalog-cell">
-                            <img src="/images/items/item1.jpg" alt="item-pic">
-                            <h1>Горный велосипед Stinger</h1>
-                            <div class="catalog-cell-basket">
-                                <p>34 000 ₽</p>
-                                <div class="catalog-cell-basket-btn"><svg width="20" height="20" viewBox="0 0 20 20"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M16 16C14.89 16 14 16.89 14 18C14 18.5304 14.2107 19.0391 14.5858 19.4142C14.9609 19.7893 15.4696 20 16 20C16.5304 20 17.0391 19.7893 17.4142 19.4142C17.7893 19.0391 18 18.5304 18 18C18 17.4696 17.7893 16.9609 17.4142 16.5858C17.0391 16.2107 16.5304 16 16 16ZM0 0V2H2L5.6 9.59L4.24 12.04C4.09 12.32 4 12.65 4 13C4 13.5304 4.21071 14.0391 4.58579 14.4142C4.96086 14.7893 5.46957 15 6 15H18V13H6.42C6.3537 13 6.29011 12.9737 6.24322 12.9268C6.19634 12.8799 6.17 12.8163 6.17 12.75C6.17 12.7 6.18 12.66 6.2 12.63L7.1 11H14.55C15.3 11 15.96 10.58 16.3 9.97L19.88 3.5C19.95 3.34 20 3.17 20 3C20 2.73478 19.8946 2.48043 19.7071 2.29289C19.5196 2.10536 19.2652 2 19 2H4.21L3.27 0M6 16C4.89 16 4 16.89 4 18C4 18.5304 4.21071 19.0391 4.58579 19.4142C4.96086 19.7893 5.46957 20 6 20C6.53043 20 7.03914 19.7893 7.41421 19.4142C7.78929 19.0391 8 18.5304 8 18C8 17.4696 7.78929 16.9609 7.41421 16.5858C7.03914 16.2107 6.53043 16 6 16Z"
-                                            fill="none" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="catalog-cell">
-                            <img src="/images/items/item1.jpg" alt="item-pic">
-                            <h1>Горный велосипед Stinger</h1>
-                            <div class="catalog-cell-basket">
-                                <p>34 000 ₽</p>
-                                <div class="catalog-cell-basket-btn"><svg width="20" height="20" viewBox="0 0 20 20"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M16 16C14.89 16 14 16.89 14 18C14 18.5304 14.2107 19.0391 14.5858 19.4142C14.9609 19.7893 15.4696 20 16 20C16.5304 20 17.0391 19.7893 17.4142 19.4142C17.7893 19.0391 18 18.5304 18 18C18 17.4696 17.7893 16.9609 17.4142 16.5858C17.0391 16.2107 16.5304 16 16 16ZM0 0V2H2L5.6 9.59L4.24 12.04C4.09 12.32 4 12.65 4 13C4 13.5304 4.21071 14.0391 4.58579 14.4142C4.96086 14.7893 5.46957 15 6 15H18V13H6.42C6.3537 13 6.29011 12.9737 6.24322 12.9268C6.19634 12.8799 6.17 12.8163 6.17 12.75C6.17 12.7 6.18 12.66 6.2 12.63L7.1 11H14.55C15.3 11 15.96 10.58 16.3 9.97L19.88 3.5C19.95 3.34 20 3.17 20 3C20 2.73478 19.8946 2.48043 19.7071 2.29289C19.5196 2.10536 19.2652 2 19 2H4.21L3.27 0M6 16C4.89 16 4 16.89 4 18C4 18.5304 4.21071 19.0391 4.58579 19.4142C4.96086 19.7893 5.46957 20 6 20C6.53043 20 7.03914 19.7893 7.41421 19.4142C7.78929 19.0391 8 18.5304 8 18C8 17.4696 7.78929 16.9609 7.41421 16.5858C7.03914 16.2107 6.53043 16 6 16Z"
-                                            fill="none" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="catalog-cell">
-                            <img src="/images/items/item1.jpg" alt="item-pic">
-                            <h1>Горный велосипед Stinger</h1>
-                            <div class="catalog-cell-basket">
-                                <p>34 000 ₽</p>
-                                <div class="catalog-cell-basket-btn">
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M16 16C14.89 16 14 16.89 14 18C14 18.5304 14.2107 19.0391 14.5858 19.4142C14.9609 19.7893 15.4696 20 16 20C16.5304 20 17.0391 19.7893 17.4142 19.4142C17.7893 19.0391 18 18.5304 18 18C18 17.4696 17.7893 16.9609 17.4142 16.5858C17.0391 16.2107 16.5304 16 16 16ZM0 0V2H2L5.6 9.59L4.24 12.04C4.09 12.32 4 12.65 4 13C4 13.5304 4.21071 14.0391 4.58579 14.4142C4.96086 14.7893 5.46957 15 6 15H18V13H6.42C6.3537 13 6.29011 12.9737 6.24322 12.9268C6.19634 12.8799 6.17 12.8163 6.17 12.75C6.17 12.7 6.18 12.66 6.2 12.63L7.1 11H14.55C15.3 11 15.96 10.58 16.3 9.97L19.88 3.5C19.95 3.34 20 3.17 20 3C20 2.73478 19.8946 2.48043 19.7071 2.29289C19.5196 2.10536 19.2652 2 19 2H4.21L3.27 0M6 16C4.89 16 4 16.89 4 18C4 18.5304 4.21071 19.0391 4.58579 19.4142C4.96086 19.7893 5.46957 20 6 20C6.53043 20 7.03914 19.7893 7.41421 19.4142C7.78929 19.0391 8 18.5304 8 18C8 17.4696 7.78929 16.9609 7.41421 16.5858C7.03914 16.2107 6.53043 16 6 16Z"
-                                            fill="none" />
-                                    </svg>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="catalog-cell">
-                            <img src="/images/items/item1.jpg" alt="item-pic">
-                            <h1>Горный велосипед Stinger</h1>
-                            <div class="catalog-cell-basket">
-                                <p>34 000 ₽</p>
-                                <div class="catalog-cell-basket-btn"><svg width="20" height="20" viewBox="0 0 20 20"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M16 16C14.89 16 14 16.89 14 18C14 18.5304 14.2107 19.0391 14.5858 19.4142C14.9609 19.7893 15.4696 20 16 20C16.5304 20 17.0391 19.7893 17.4142 19.4142C17.7893 19.0391 18 18.5304 18 18C18 17.4696 17.7893 16.9609 17.4142 16.5858C17.0391 16.2107 16.5304 16 16 16ZM0 0V2H2L5.6 9.59L4.24 12.04C4.09 12.32 4 12.65 4 13C4 13.5304 4.21071 14.0391 4.58579 14.4142C4.96086 14.7893 5.46957 15 6 15H18V13H6.42C6.3537 13 6.29011 12.9737 6.24322 12.9268C6.19634 12.8799 6.17 12.8163 6.17 12.75C6.17 12.7 6.18 12.66 6.2 12.63L7.1 11H14.55C15.3 11 15.96 10.58 16.3 9.97L19.88 3.5C19.95 3.34 20 3.17 20 3C20 2.73478 19.8946 2.48043 19.7071 2.29289C19.5196 2.10536 19.2652 2 19 2H4.21L3.27 0M6 16C4.89 16 4 16.89 4 18C4 18.5304 4.21071 19.0391 4.58579 19.4142C4.96086 19.7893 5.46957 20 6 20C6.53043 20 7.03914 19.7893 7.41421 19.4142C7.78929 19.0391 8 18.5304 8 18C8 17.4696 7.78929 16.9609 7.41421 16.5858C7.03914 16.2107 6.53043 16 6 16Z"
-                                            fill="none" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="catalog-cell">
-                            <img src="/images/items/item1.jpg" alt="item-pic">
-                            <h1>Горный велосипед Stinger</h1>
-                            <div class="catalog-cell-basket">
-                                <p>34 000 ₽</p>
-                                <div class="catalog-cell-basket-btn"><svg width="20" height="20" viewBox="0 0 20 20"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M16 16C14.89 16 14 16.89 14 18C14 18.5304 14.2107 19.0391 14.5858 19.4142C14.9609 19.7893 15.4696 20 16 20C16.5304 20 17.0391 19.7893 17.4142 19.4142C17.7893 19.0391 18 18.5304 18 18C18 17.4696 17.7893 16.9609 17.4142 16.5858C17.0391 16.2107 16.5304 16 16 16ZM0 0V2H2L5.6 9.59L4.24 12.04C4.09 12.32 4 12.65 4 13C4 13.5304 4.21071 14.0391 4.58579 14.4142C4.96086 14.7893 5.46957 15 6 15H18V13H6.42C6.3537 13 6.29011 12.9737 6.24322 12.9268C6.19634 12.8799 6.17 12.8163 6.17 12.75C6.17 12.7 6.18 12.66 6.2 12.63L7.1 11H14.55C15.3 11 15.96 10.58 16.3 9.97L19.88 3.5C19.95 3.34 20 3.17 20 3C20 2.73478 19.8946 2.48043 19.7071 2.29289C19.5196 2.10536 19.2652 2 19 2H4.21L3.27 0M6 16C4.89 16 4 16.89 4 18C4 18.5304 4.21071 19.0391 4.58579 19.4142C4.96086 19.7893 5.46957 20 6 20C6.53043 20 7.03914 19.7893 7.41421 19.4142C7.78929 19.0391 8 18.5304 8 18C8 17.4696 7.78929 16.9609 7.41421 16.5858C7.03914 16.2107 6.53043 16 6 16Z"
-                                            fill="none" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="catalog-cell">
-                            <img src="/images/items/item1.jpg" alt="item-pic">
-                            <h1>Горный велосипед Stinger</h1>
-                            <div class="catalog-cell-basket">
-                                <p>34 000 ₽</p>
-                                <div class="catalog-cell-basket-btn"><svg width="20" height="20" viewBox="0 0 20 20"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M16 16C14.89 16 14 16.89 14 18C14 18.5304 14.2107 19.0391 14.5858 19.4142C14.9609 19.7893 15.4696 20 16 20C16.5304 20 17.0391 19.7893 17.4142 19.4142C17.7893 19.0391 18 18.5304 18 18C18 17.4696 17.7893 16.9609 17.4142 16.5858C17.0391 16.2107 16.5304 16 16 16ZM0 0V2H2L5.6 9.59L4.24 12.04C4.09 12.32 4 12.65 4 13C4 13.5304 4.21071 14.0391 4.58579 14.4142C4.96086 14.7893 5.46957 15 6 15H18V13H6.42C6.3537 13 6.29011 12.9737 6.24322 12.9268C6.19634 12.8799 6.17 12.8163 6.17 12.75C6.17 12.7 6.18 12.66 6.2 12.63L7.1 11H14.55C15.3 11 15.96 10.58 16.3 9.97L19.88 3.5C19.95 3.34 20 3.17 20 3C20 2.73478 19.8946 2.48043 19.7071 2.29289C19.5196 2.10536 19.2652 2 19 2H4.21L3.27 0M6 16C4.89 16 4 16.89 4 18C4 18.5304 4.21071 19.0391 4.58579 19.4142C4.96086 19.7893 5.46957 20 6 20C6.53043 20 7.03914 19.7893 7.41421 19.4142C7.78929 19.0391 8 18.5304 8 18C8 17.4696 7.78929 16.9609 7.41421 16.5858C7.03914 16.2107 6.53043 16 6 16Z"
-                                            fill="none" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-HTML;
+        $html .= " </div></div></div>";
         return $html;
     }
+
+
+    private function getFilterValues($column) {
+        $query = $this->conn->prepare("SELECT DISTINCT $column FROM products WHERE $column IS NOT NULL ORDER BY $column ASC");
+        $query->execute();
+        $result = $query->get_result();
+        $values = [];
+        while ($row = $result->fetch_assoc()) {
+            $values[] = $row[$column];
+        }
+        return $values;
+    }
 }
+
 // Пример использования
 $catalogPage = new CatalogPage($conn);
 $catalogPage->setTitle("Каталог - ВелоТрейд");
 $catalogPage->write();
+?>

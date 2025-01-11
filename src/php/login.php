@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require_once('pageConstruct.php');
 require_once 'db.php'; // Подключение к базе данных
 
@@ -42,6 +44,7 @@ class LoginPage extends StandardPage {
                     if (password_verify($password, $user['password'])) {
                         // Установка сессии
                         $_SESSION['user_id'] = $user['id'];
+                        $_SESSION['username'] = $username;
                         $_SESSION['role'] = $user['role'];
 
                         // Перенаправление
@@ -80,6 +83,8 @@ class LoginPage extends StandardPage {
 
                     if ($stmt->execute()) {
                         $_SESSION['user_id'] = $stmt->insert_id;
+                        $_SESSION['username'] = $username;
+                        $_SESSION['email'] = $email;
                         $_SESSION['role'] = 'user';
                         header("Location: user_dashboard.php");
                         exit;
